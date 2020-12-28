@@ -1,3 +1,3 @@
 myRepo:
-  gitProvider: manishas_jfrog
-  path: manishas-jfrog/jfrog-pipelines-hello-world
+  gitProvider: my_github
+  path: jfrog/jfrog-pipelines-simple-example
