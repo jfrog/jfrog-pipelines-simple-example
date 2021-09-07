@@ -80,3 +80,4 @@ pipelines:
           onExecute:
             # Retrieves the commitSha from input resource
             - echo "CommitSha is $res_myPropertyBag_commitSha"
+            - echo "apan was here!"
