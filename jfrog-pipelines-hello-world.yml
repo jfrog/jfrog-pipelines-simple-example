@@ -18,6 +18,10 @@ resources:
     configuration:
       commitSha: 1
       runID: 1
+  - name: mySecondPropertyBag
+    type: PropertyBag
+    configuration:
+      message: apa
 
 pipelines:
   - name: my_first_pipeline
@@ -28,6 +32,8 @@ pipelines:
           inputResources:
             # Sets up step to be triggered when there are commit events to myFirstRepo
             - name: myFirstRepo
+          outputResources:
+            - name: mySecondPropertyBag
         execution:
           onExecute:
             # Data from input resources is available as env variables in the step
@@ -40,6 +46,7 @@ pipelines:
             # So this will be empty during first run and will be set to prior run number in subsequent runs
             # Pipeline state documentation: https://www.jfrog.com/confluence/display/JFROG/Creating+Stateful+Pipelines#CreatingStatefulPipelines-PipelineState
             - echo "Previous run ID is $prev_runid"
+            - write_output mySecondPropertyBag message=$res_myFirstRepo_commitSha
 
       - name: p1_s2
         type: Bash
@@ -58,11 +65,15 @@ pipelines:
             - name: p1_s2
           outputResources:
             - name: myPropertyBag
+          inputResources:
+            # Sets up step to be triggered when myPropertyBag is updated
+            - name: mySecondPropertyBag
         execution:
           onExecute:
             - echo $current_runid
             # Writes current run number to pipeline state
             - add_pipeline_variables prev_runid=$run_id
+            - echo "Message from property bag $res_mySecondPropertyBag_message"
             # Uses an utility function to update the output resource with the commitSha that triggered this run
             # Dependent pipelines can be configured to trigger when this resource is updated
             # Utility functions documentation: https://www.jfrog.com/confluence/display/JFROG/Pipelines+Utility+Functions
