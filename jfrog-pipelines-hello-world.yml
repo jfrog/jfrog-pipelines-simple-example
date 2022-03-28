@@ -2,7 +2,7 @@ template: true   # required for local templates
 valuesFilePath: ./values.yml
 
 resources:
-  - name: jfrog-pipelines-simple-example
+  - name: Gyanar-git
     type: GitRepo
     configuration:
       # SCM integration where the repository is located
