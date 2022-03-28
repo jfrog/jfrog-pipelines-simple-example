@@ -2,7 +2,7 @@ template: true   # required for local templates
 valuesFilePath: ./values.yml
 
 resources:
-  - name: myFirstRepo
+  - name: jfrog-pipelines-simple-example
     type: GitRepo
     configuration:
       # SCM integration where the repository is located
