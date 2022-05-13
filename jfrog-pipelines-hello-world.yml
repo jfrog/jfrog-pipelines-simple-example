@@ -1,7 +1,6 @@
 template: true   # required for local templates
 valuesFilePath: ./values.yml
 
-
 resources:
   - name: myFirstRepo
     type: GitRepo
