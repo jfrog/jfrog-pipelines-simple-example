@@ -42,6 +42,8 @@ pipelines:
       - name: p1_s1
         type: Bash
         configuration:
+          inputSteps:
+            - name: test_app
           inputResources:
             # Sets up step to be triggered when there are commit events to myFirstRepo
             - name: myFirstRepo
