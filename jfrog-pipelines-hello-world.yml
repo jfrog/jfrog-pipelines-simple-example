@@ -26,17 +26,19 @@ resources:
       failing: 0
 
 pipelines:
-  - name: test_app
-    type: Jenkins
-    configuration:
-      jenkinsJobName: testPipeline
-      integrations:
-        - name: jenkinsIntegrationForHook
-      outputResources:
-        - name: app_test_results
+  
       
   - name: my_first_pipeline
     steps:
+      - name: test_app
+        type: Jenkins
+        configuration:
+          jenkinsJobName: testPipeline
+          integrations:
+            - name: jenkinsIntegrationForHook
+          outputResources:
+            - name: app_test_results
+        
       - name: p1_s1
         type: Bash
         configuration:
