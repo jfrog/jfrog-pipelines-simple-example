@@ -19,7 +19,22 @@ resources:
       commitSha: 1
       runID: 1
 
+  - name: app_test_results
+    type: PropertyBag
+    configuration:
+      passing: 0
+      failing: 0
+
 pipelines:
+  - name: test_app
+    type: Jenkins
+    configuration:
+      jenkinsJobName: testPipeline
+      integrations:
+        - name: jenkinsIntegrationForHook
+      outputResources:
+        - name: app_test_results
+      
   - name: my_first_pipeline
     steps:
       - name: p1_s1
