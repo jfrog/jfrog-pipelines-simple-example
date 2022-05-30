@@ -18,7 +18,13 @@ resources:
     configuration:
       commitSha: 1
       runID: 1
-
+      
+  - name: app_test_results
+    type: PropertyBag
+    configuration:
+      passing: 0
+      failing: 0
+      
 pipelines:
       
   - name: my_first_pipeline
