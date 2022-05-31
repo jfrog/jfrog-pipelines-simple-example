@@ -36,7 +36,7 @@ pipelines:
           integrations:
             - name: jenkinsIntegrationForHook
             
-       - name: test_app2
+      - name: test_app2
         type: Jenkins
         configuration:
           inputSteps:
