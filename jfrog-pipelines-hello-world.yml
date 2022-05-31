@@ -35,6 +35,15 @@ pipelines:
           jenkinsJobName: testPipeline
           integrations:
             - name: jenkinsIntegrationForHook
+            
+       - name: test_app2
+        type: Jenkins
+        configuration:
+          inputSteps:
+            - name: test_app
+          jenkinsJobName: failPipeline
+          integrations:
+            - name: jenkinsIntegrationForHook      
         
       - name: p1_s1
         type: Bash
