@@ -87,7 +87,7 @@ pipelines:
   - name: my_second_pipeline
     steps:
       - name: p2_s1
-        type: Bash
+        type: MvnBuild
         configuration:
           inputResources:
             # Sets up step to be triggered when myPropertyBag is updated
