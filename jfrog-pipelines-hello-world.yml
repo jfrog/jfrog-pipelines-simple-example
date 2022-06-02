@@ -29,12 +29,18 @@ pipelines:
       
   - name: my_first_pipeline
     steps:
-      - name: test_app1
-        type: MvnBuild   
+      - name: test_app
+        type: Jenkins
+        configuration:
+          jenkinsJobName: testPipeline
+          integrations:
+            - name: jenkinsIntegrationForHook     
         
       - name: p1_s1
         type: Bash
         configuration:
+          inputSteps:
+            - name: test_app
           inputResources:
             # Sets up step to be triggered when there are commit events to myFirstRepo
             - name: myFirstRepo
