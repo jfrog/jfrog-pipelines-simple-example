@@ -29,7 +29,7 @@ pipelines:
       
   - name: my_first_pipeline
     steps:
-      - name: test_app
+      - name: test_app1
         type: MvnBuild   
         
       - name: p1_s1
