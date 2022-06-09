@@ -1,4 +1,3 @@
 myRepo:
-
   gitProvider: githubPipelineSource
   path: Gyanar-git/myFirstRepo
