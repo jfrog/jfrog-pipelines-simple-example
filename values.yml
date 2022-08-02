@@ -1,3 +1,3 @@
 myRepo:
-  gitProvider: gitHubIntegration
+  gitProvider: github
   path: Gyanar-git/myFirstRepo
