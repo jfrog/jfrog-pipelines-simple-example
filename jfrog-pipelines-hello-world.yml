@@ -15,9 +15,9 @@ resources:
         # Specifies which branches will trigger dependent steps
         include: master
       buildOn:
-       pullRequestCreate: true
-     cancelPendingRunsOn:
-       pullRequestUpdate: true
+        pullRequestCreate: true
+      cancelPendingRunsOn:
+        pullRequestUpdate: true
 
   - name: myPropertyBag
     type: PropertyBag
