@@ -32,6 +32,7 @@ resources:
       failing: 0
       
 pipelines:
+
   - name: my_first_pipeline
     steps:
       - name: test_app
