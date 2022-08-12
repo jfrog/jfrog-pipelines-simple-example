@@ -13,7 +13,7 @@ resources:
        include: ^README.md$
       branches:
         # Specifies which branches will trigger dependent steps
-        include: master
+        include: ^{{gitBranch}}$
       buildOn:
         pullRequestCreate: true
       cancelPendingRunsOn:
