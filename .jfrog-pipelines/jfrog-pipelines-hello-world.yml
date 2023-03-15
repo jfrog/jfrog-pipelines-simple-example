@@ -2,7 +2,7 @@ template: true   # required for local templates
 valuesFilePath: ./values.yml
 
 resources:
-  - name: myFirstRepo
+  - name: myGitRepo
     type: GitRepo
     configuration:
       # SCM integration where the repository is located
@@ -13,7 +13,7 @@ resources:
         # Specifies which branches will trigger dependent steps
         include: master
 
-  - name: myPropertyBag
+  - name: thisPropertyBag
     type: PropertyBag
     configuration:
       commitSha: 1
@@ -27,7 +27,7 @@ pipelines:
         configuration:
           inputResources:
             # Sets up step to be triggered when there are commit events to myFirstRepo
-            - name: myFirstRepo
+            - name: myGitRepo
         execution:
           onExecute:
             # Data from input resources is available as env variables in the step
@@ -40,6 +40,8 @@ pipelines:
             # So this will be empty during first run and will be set to prior run number in subsequent runs
             # Pipeline state documentation: https://www.jfrog.com/confluence/display/JFROG/Creating+Stateful+Pipelines#CreatingStatefulPipelines-PipelineState
             - echo "Previous run ID is $prev_runid"
+          onStart:
+            - update_run_description "This is a pipeline of pipelines"
 
       - name: p1_s2
         type: Bash
@@ -57,7 +59,7 @@ pipelines:
           inputSteps:
             - name: p1_s2
           outputResources:
-            - name: myPropertyBag
+            - name: thisPropertyBag
         execution:
           onExecute:
             - echo $current_runid
@@ -66,7 +68,7 @@ pipelines:
             # Uses an utility function to update the output resource with the commitSha that triggered this run
             # Dependent pipelines can be configured to trigger when this resource is updated
             # Utility functions documentation: https://www.jfrog.com/confluence/display/JFROG/Pipelines+Utility+Functions
-            - write_output myPropertyBag commitSha=$commitSha runID=$current_runid
+            - write_output thisPropertyBag commitSha=$commitSha runID=$current_runid
 
   - name: my_second_pipeline
     steps:
@@ -74,9 +76,9 @@ pipelines:
         type: Bash
         configuration:
           inputResources:
-            # Sets up step to be triggered when myPropertyBag is updated
-            - name: myPropertyBag
+            # Sets up step to be triggered when thisPropertyBag is updated
+            - name: thisPropertyBag
         execution:
           onExecute:
             # Retrieves the commitSha from input resource
-            - echo "CommitSha is $res_myPropertyBag_commitSha"
+            - echo "CommitSha is $res_thisPropertyBag_commitSha"
