@@ -18,6 +18,11 @@ resources:
     configuration:
       commitSha: 1
       runID: 1
+      
+  - name: cron_trigger
+    type: CronTrigger
+    configuration:
+      interval: '0 1 * * *'     
 
 pipelines:
   - name: pipeline_of_pipelines_1
@@ -28,6 +33,7 @@ pipelines:
           inputResources:
             # Sets up step to be triggered when there are commit events to myFirstRepo
             - name: myGitRepo
+            - name: cron_trigger
         execution:
           onExecute:
             # Data from input resources is available as env variables in the step
