@@ -41,7 +41,7 @@ pipelines:
             # Pipeline state documentation: https://www.jfrog.com/confluence/display/JFROG/Creating+Stateful+Pipelines#CreatingStatefulPipelines-PipelineState
             - echo "Previous run ID is $prev_runid"
           onStart:
-            - update_run_description "Pipeline of pipelines. my_first_pipeline triggers my_second_pipeline."
+            - update_run_description "Pipeline of pipelines. First pipeline triggers second pipeline."
 
       - name: p1_s2
         type: Bash
