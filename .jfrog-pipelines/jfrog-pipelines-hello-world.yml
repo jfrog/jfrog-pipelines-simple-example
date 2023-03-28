@@ -22,7 +22,7 @@ resources:
   - name: cron_trigger
     type: CronTrigger
     configuration:
-      interval: '0 1 * * *'     
+      interval: '0 4 * * *'     
 
 pipelines:
   - name: pipeline_of_pipelines_1
